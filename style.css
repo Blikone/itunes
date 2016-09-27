@@ -1,0 +1,15 @@
+.song-well{;
+  margin: 3px 12px;
+  border: 2px solid #a9a9a9;
+  border-radius: 9px;
+  padding: 15px;
+}
+.list-odd{
+  background-color: #d4d4d4
+}
+.list-even{
+  background-color: #f3f3f3;
+}
+.ordinal, .album-art{
+  display: inline-block;
+}
