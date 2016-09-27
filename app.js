@@ -6,3 +6,4 @@ function getMusic() {
 
 function drawSongs(songList) {
     console.log(songList);
+}
