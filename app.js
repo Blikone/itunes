@@ -19,17 +19,17 @@ function drawSongs(songList) {
                     <div class="col-xs-2">
                         <p class="ordinal">${index}.</p>
                         <img src="${song.albumArt}"
-                            class="album-art" />
+                            class="album-art img-responsive" />
                     </div>
                     <div class="col-xs-4">
                         <h4>${song.title}</h4>
-                        <p>${song.artist} &mdash; ${song.collection}</p>
+                        <p class="artist-well">${song.artist} &mdash; ${song.collection}</p>
                     </div>
                     <div class="col-xs-4">
                         <audio controls preload:"metadata"><source src="${song.preview}" type="audio/mp4"></audio>
                     </div>
                     <div class="col-xs-2 price">
-                        <p>${song.price}</p>
+                        <p>album price: ${song.price}</p>
                     </div>
                 </div>
             </div>`
@@ -38,8 +38,10 @@ function drawSongs(songList) {
 };
 
 // Only play one song at a time.  Credit: stackoverflow
-$("audio").on("play", function() {
-    $("audio").not(this).each(function(index, audio) {
-        audio.pause();
+$("audio").on("play", function(){
+    var _this = $(this);
+    $("audio").each(function(i,el){
+        if(!$(el).is(_this))
+            $(el).get(0).pause();
     });
 });
