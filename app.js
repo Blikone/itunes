@@ -18,8 +18,10 @@ function drawSongs(songList) {
                 <div class="row">
                     <div class="col-xs-2 art-well">
                         <div class="row">
-                            <div class="col-xs-4 container">
-                                <p class="ordinal">${index}.</p>
+                            <div class="col-xs-4">
+                                <div class="number-well">
+                                    <p class="ordinal">${index}.</p>
+                                </div>
                             </div>
                             <div class="col-xs-8">
                                 <img src="${song.albumArt}" class="album-art">

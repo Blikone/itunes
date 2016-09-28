@@ -54,3 +54,7 @@ audio{
   background-color: #4F83E2;
   color: white
 }
+.number-well{
+  padding-top: 25px;
+  text-align: right;
+}
