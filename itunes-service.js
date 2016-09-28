@@ -18,7 +18,7 @@ var itunes = {
                     preview: song.previewUrl
                 };
             })
-            $('#get-music-button').text('GET MUSIC');
+            $('#get-music-button').text('Get Music');
             return songList;
         })
     }
