@@ -8,7 +8,14 @@ var itunes = {
         $('#get-music-button').text('LOADING....');
 
         return $.getJSON(apiUrl).then(function (response) {
-            var songList = response.results.map(function (song) {
+            var filteredList = response.results.filter(function(entry){
+                if(entry.kind == 'song'){
+                    return true;
+                }else{
+                    return false;
+                }
+            })
+            var songList = filteredList.map(function (song) {
                 return {
                     title: song.trackName,
                     albumArt: song.artworkUrl60,
