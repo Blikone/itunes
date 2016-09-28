@@ -8,6 +8,7 @@ var itunes = {
         $('#get-music-button').text('LOADING....');
 
         return $.getJSON(apiUrl).then(function (response) {
+            console.log(response);
             var filteredList = response.results.filter(function(entry){
                 if(entry.kind == 'song'){
                     return true;
@@ -22,7 +23,8 @@ var itunes = {
                     artist: song.artistName,
                     collection: song.collectionName,
                     price: song.collectionPrice,
-                    preview: song.previewUrl
+                    preview: song.previewUrl,
+                    purchaseUrl: song.collectionViewUrl
                 };
             })
             $('#get-music-button').text('Get Music');

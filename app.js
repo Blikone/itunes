@@ -16,20 +16,26 @@ function drawSongs(songList) {
         songsDisplay.innerHTML += 
             `<div class="song-well ${parity}">
                 <div class="row">
-                    <div class="col-xs-2">
-                        <p class="ordinal">${index}.</p>
-                        <img src="${song.albumArt}"
-                            class="album-art img-responsive" />
+                    <div class="col-xs-2 container art-well">
+                        <div class="row">
+                            <div class="col-xs-4 container">
+                                <p class="ordinal">${index}.</p>
+                            </div>
+                            <div class="col-xs-8">
+                                <img src="${song.albumArt}" class="album-art">
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-xs-4">
+                    <div class="col-xs-5">
                         <h4>${song.title}</h4>
                         <p class="artist-well">${song.artist} &mdash; ${song.collection}</p>
                     </div>
-                    <div class="col-xs-4">
+                    <div class="col-xs-3">
                         <audio controls preload:"metadata"><source src="${song.preview}" type="audio/mp4"></audio>
                     </div>
                     <div class="col-xs-2 price">
                         <p>album price: ${song.price}</p>
+                        <a href="${song.purchaseUrl}" target="_blank"><button class="btn btn-purchase">Buy Album on iTunes</button></a>
                     </div>
                 </div>
             </div>`

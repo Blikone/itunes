@@ -5,12 +5,21 @@ body{
   background-image: url("./images/fractal-background.jpg") 
 }
 
-.search-bar{
-    margin: 32vh auto 20px auto;
+.heading{
+  text-align: center;
+  margin: 32vh auto 20px auto;
+}
+h1{
+  font-size: 45px;
+  color: rgb(243,243,243)
 }
 .container{
   display: flex;
-  justify-content: center
+  justify-content: center;
+  align-content: center;
+}
+.container.art-well{
+  justify-content: flex-start
 }
 
 .song-well{
@@ -22,6 +31,9 @@ body{
 .artist-well{
     white-space: nowrap
 }
+audio{
+  width: 100%;
+}
 .list-odd{
   background-color: rgba(200,200,200,.85)
 }
@@ -30,4 +42,14 @@ body{
 }
 .ordinal, .album-art{
   display: inline-block;
+}
+.ordinal{
+  font-size: 18px;
+}
+.album-art{
+  height: 70px
+}
+.btn-purchase{
+  background-color: #4F83E2;
+  color: white
 }
