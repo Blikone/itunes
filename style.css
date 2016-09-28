@@ -1,5 +1,13 @@
+body{
+  background-image: url("./images/fractal-background.jpg") 
+}
+
 .search-bar{
     margin: 32vh auto 20px auto;
+}
+.container{
+  display: flex;
+  justify-content: center
 }
 
 .song-well{
@@ -12,10 +20,10 @@
     white-space: nowrap
 }
 .list-odd{
-  background-color: #d4d4d4
+  background-color: rgba(200,200,200,.85)
 }
 .list-even{
-  background-color: #f3f3f3;
+  background-color: rgba(243,243,243,.85);
 }
 .ordinal, .album-art{
   display: inline-block;
