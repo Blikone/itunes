@@ -11,11 +11,11 @@
     <div class="heading">
         <h1>find my jam</h1>
     </div>
-    <form class="form-inline search-bar container">
+    <form class="form-inline search-bar container" onsubmit="getMusic(event)"> 
         <!--DO NOT MODIFY THE ID OR ONCLICK ATTRIBUTES IN THIS FORM-->
         <div class="form-group">
             <input type="text" class="form-control" id="artist" placeholder="Artist Name" />
-            <button type="button" class="btn btn-primary" id="get-music-button" onclick="getMusic()">Get Music</button>
+            <button type="button" class="btn btn-primary">Get Music</button>
         </div>
     </form>
     <div class="container-fluid" id="songs">

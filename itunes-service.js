@@ -8,7 +8,6 @@ var itunes = {
         $('#get-music-button').text('LOADING....');
 
         return $.getJSON(apiUrl).then(function (response) {
-            console.log(response);
             var filteredList = response.results.filter(function(entry){
                 if(entry.kind == 'song'){
                     return true;
