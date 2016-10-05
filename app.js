@@ -1,3 +1,6 @@
+var myTunes = new MyTunes();
+var searchResults = [];
+
 //Do Not Modify the getMusic function
 function getMusic(event) {
     event.preventDefault();
@@ -6,29 +9,55 @@ function getMusic(event) {
 }
 
 function drawSongs(songList) {
+    // debugger;
+    var mySongs = myTunes.getTracks();
+    if (mySongs != songList) {
+        searchResults = songList;
+    };
+    console.log(songList[0]);
     document.getElementById('songs').innerHTML = ""
     var template = "";
+    var whichButton = ""
     var songsDisplay = document.getElementById('songs');
     for (var i = 0; i < songList.length; i++) {
         var index = i+1;
         var parity = index % 2 === 1 ? "list-odd" : "list-even";
         var song = songList[i];
-        songsDisplay.innerHTML += 
+        whichButton = songList == mySongs ? 
+            `
+                <button class="promote-track btn btn-default" id="${song.id}"><span class = "glyphicon glyphicon-arrow-up"></span> Promote</button>
+                <button class="demote-track btn btn-default" id="${song.id}"><span class = "glyphicon glyphicon-arrow-down"></span> Demote</button>
+                <button class="remove-track btn btn-default" id="${song.id}"><span class = "glyphicon glyphicon-remove"></span> Remove</button>
+            ` : `
+                <button class="save-track btn btn-default" id="${song.id}"><span class = "glyphicon glyphicon-heart"></span> Save to<br/>MyTunes</button>
+            `
+        for (var j=0; j<mySongs.length; j++) {
+            // debugger;
+            if (songList[i].id == mySongs[j].id) {
+                parity += " selected"
+            }
+        }
+        template += 
             `<div class="song-well ${parity}">
                 <div class="row">
-                    <div class="col-xs-2 art-well">
+                    <div class="col-xs-3 art-well">
                         <div class="row">
-                            <div class="col-xs-4">
+                            <div class="col-xs-3">
                                 <div class="number-well">
                                     <p class="ordinal">${index}.</p>
                                 </div>
                             </div>
-                            <div class="col-xs-8">
+                            <div class="col-xs-5">
+                                <div class="button-well">
+                                    ${whichButton}
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
                                 <img src="${song.albumArt}" class="album-art">
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-5">
+                    <div class="col-xs-4">
                         <h4>${song.title}</h4>
                         <p class="artist-well">${song.artist} &mdash; ${song.collection}</p>
                     </div>
@@ -42,8 +71,45 @@ function drawSongs(songList) {
                 </div>
             </div>`
         ;
+        songsDisplay.innerHTML = template;
     };
 };
+
+
+$('.load-mysongs-button').on('click', function showMyTunes() {
+    drawSongs(myTunes.getTracks());
+    $('.load-mysongs-button').addClass('hidden');
+    $('.load-search-button').removeClass('hidden');
+})
+$('.load-search-button').on('click', function showSearch() {
+    drawSongs(searchResults);
+    $('.load-search-button').addClass('hidden');
+    $('.load-mysongs-button').removeClass('hidden');
+})
+
+$('#songs').on('click', 'button.save-track', function () {
+    // debugger;
+    myTunes.addTrack(this.id);
+    // var id = this.id;
+    // $('#id').parents('.song-well').addClass('selected');
+    drawSongs(searchResults);
+})
+$('#songs').on('click', 'button.remove-track', function () {
+    // debugger;
+    myTunes.removeTrack(this.id);
+    drawSongs(myTunes.getTracks());
+})
+
+$('#songs').on('click', 'button.promote-track', function () {
+    // debugger;
+    myTunes.promoteTrack(this.id);
+    drawSongs(myTunes.getTracks());
+})
+$('#songs').on('click', 'button.demote-track', function () {
+    // debugger;
+    myTunes.demoteTrack(this.id);
+    drawSongs(myTunes.getTracks());
+})
 
 /**This is my attempt to get the search to run when "enter" is pressed.  
 It's calling the function so I have no idea why it stops mid-operation.*/
