@@ -8,8 +8,9 @@ function MyTunes() {
      *      Use local storage to save/retrieve favorites list
      * 
      */
-    var _myTracks = [];
-    var myTracks = loadTracks();
+
+    var _myTracks = loadTracks();
+    console.log(_myTracks);
 
     this.getTracks = function () {
         return _myTracks;
@@ -19,8 +20,14 @@ function MyTunes() {
         for (var i = 0; i < searchResults.length; i++) {
             var song = searchResults[i];
             if (song.id == id) {
+                for (var j = 0; j < _myTracks.length; j++) {
+                    if (song.id == _myTracks[j].id) {
+                        return;
+                    }
+                }
                 _myTracks.push(song);
                 // console.log(_myTracks);
+                saveTracks();
                 return;
             };
         };
@@ -31,6 +38,7 @@ function MyTunes() {
             var song = this.getTracks()[i];
             if (song.id == id) {
                 _myTracks.splice(i, 1);
+                saveTracks();
                 return;
             }
         }
@@ -43,6 +51,7 @@ function MyTunes() {
                 var temp = _myTracks[i-1];
                 _myTracks[i-1] = _myTracks[i];
                 _myTracks[i] = temp;
+                saveTracks();
                 return;
             }
         }
@@ -53,6 +62,7 @@ function MyTunes() {
                 var temp = _myTracks[i+1];
                 _myTracks[i+1] = _myTracks[i];
                 _myTracks[i] = temp;
+                saveTracks();
                 return;
             }
         }
@@ -60,9 +70,15 @@ function MyTunes() {
 
 
     function saveTracks() {
-
+        localStorage.setItem('my-tunes', JSON.stringify(_myTracks));
     }
     function loadTracks() {
-        // return trackList;
+        var myTracks = localStorage.getItem('my-tunes');
+        if (myTracks) {
+            myTracks = JSON.parse(myTracks);
+        }else{
+            myTracks = []
+        }
+        return myTracks;
     }
 }
