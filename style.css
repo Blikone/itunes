@@ -68,6 +68,12 @@ audio{
 .button-well{
   margin-top: 10px;
 }
+.load-mysongs-button, .load-search-button{
+  margin: auto;
+}
+.load-button{
+  text-align: center;
+}
 .hidden{
   display: none;
 }
