@@ -1,5 +1,5 @@
 function MyTunes() {
-    
+
     /////TO-DO LIST/////
     /**DONE Add tracks when button is clicked
      * DONE Change song's class to a light green hue whenever it's on the favorites list
@@ -15,8 +15,8 @@ function MyTunes() {
         return _myTracks;
     }
 
-    this.addTrack = function(id) {
-        for (var i = 0; i<searchResults.length; i++) {
+    this.addTrack = function (id) {
+        for (var i = 0; i < searchResults.length; i++) {
             var song = searchResults[i];
             if (song.id == id) {
                 _myTracks.push(song);
@@ -26,19 +26,36 @@ function MyTunes() {
         };
     };
 
-    this.removeTrack = function(id) {
+    this.removeTrack = function (id) {
         for (var i = 0; i < this.getTracks().length; i++) {
             var song = this.getTracks()[i];
             if (song.id == id) {
-                _myTracks.splice(i,1);
+                _myTracks.splice(i, 1);
+                return;
             }
         }
     }
-    this.promoteTrack = function() {
-
+    this.promoteTrack = function (id) {
+        // console.log(id)
+        for (var i = 1; i < _myTracks.length; i++) {
+            // console.log(_myTracks[i].id);
+            if (_myTracks[i].id == id) {
+                var temp = _myTracks[i-1];
+                _myTracks[i-1] = _myTracks[i];
+                _myTracks[i] = temp;
+                return;
+            }
+        }
     }
-    this.demoteTrack = function () {
-
+    this.demoteTrack = function (id) {
+        for (var i = 0; i < _myTracks.length-1; i++) {
+            if (_myTracks[i].id == id) {
+                var temp = _myTracks[i+1];
+                _myTracks[i+1] = _myTracks[i];
+                _myTracks[i] = temp;
+                return;
+            }
+        }
     }
 
 

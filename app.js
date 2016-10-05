@@ -92,8 +92,19 @@ $('#songs').on('click', 'button.save-track', function () {
     drawSongs(searchResults);
 })
 $('#songs').on('click', 'button.remove-track', function () {
-    debugger;
+    // debugger;
     myTunes.removeTrack(this.id);
+    drawSongs(myTunes.getTracks());
+})
+
+$('#songs').on('click', 'button.promote-track', function () {
+    // debugger;
+    myTunes.promoteTrack(this.id);
+    drawSongs(myTunes.getTracks());
+})
+$('#songs').on('click', 'button.demote-track', function () {
+    // debugger;
+    myTunes.demoteTrack(this.id);
     drawSongs(myTunes.getTracks());
 })
 
