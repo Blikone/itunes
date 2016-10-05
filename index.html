@@ -15,13 +15,17 @@
         <!--DO NOT MODIFY THE ID OR ONCLICK ATTRIBUTES IN THIS FORM-->
         <div class="form-group">
             <input type="text" class="form-control" id="artist" placeholder="Artist Name" />
-            <button type="button" class="btn btn-primary">Get Music</button>
+            <button type="button" class="btn btn-primary" id="get-music-button" onclick="getMusic(event)">Get Music</button>
         </div>
     </form>
+    <div class="load-button">
+        <button id="load-button">Load MyTunes</button>
+    </div>
     <div class="container-fluid" id="songs">
         
     </div>
     <script src="itunes-service.js"></script>
+    <script src="my-tunes-service.js"></script>
     <script src="app.js"></script>
 </body>
 

@@ -18,6 +18,7 @@ var itunes = {
             var songList = filteredList.map(function (song) {
                 return {
                     title: song.trackName,
+                    id: song.trackId,
                     albumArt: song.artworkUrl60,
                     artist: song.artistName,
                     collection: song.collectionName,

@@ -1,3 +1,6 @@
+var myTunes = new MyTunes();
+var searchResults = [];
+
 //Do Not Modify the getMusic function
 function getMusic(event) {
     event.preventDefault();
@@ -6,6 +9,11 @@ function getMusic(event) {
 }
 
 function drawSongs(songList) {
+    var mySongs = myTunes.getTracks();
+    if (mySongs != songList) {
+        searchResults = songList;
+    };
+    console.log(songList[0]);
     document.getElementById('songs').innerHTML = ""
     var template = "";
     var songsDisplay = document.getElementById('songs');
@@ -13,22 +21,30 @@ function drawSongs(songList) {
         var index = i+1;
         var parity = index % 2 === 1 ? "list-odd" : "list-even";
         var song = songList[i];
-        songsDisplay.innerHTML += 
+        for (var j=0; j<mySongs.length; j++) {
+            if (songList[i] == mySongs[j]) {
+                parity += " selected"
+            }
+        }
+        template += 
             `<div class="song-well ${parity}">
                 <div class="row">
-                    <div class="col-xs-2 art-well">
+                    <div class="col-xs-3 art-well">
                         <div class="row">
-                            <div class="col-xs-4">
+                            <div class="col-xs-3">
                                 <div class="number-well">
                                     <p class="ordinal">${index}.</p>
                                 </div>
                             </div>
-                            <div class="col-xs-8">
+                            <div class="col-xs-5">
+                                <button class="save-track" id="${song.id}">Save to MyTunes</button>
+                            </div>
+                            <div class="col-xs-4">
                                 <img src="${song.albumArt}" class="album-art">
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-5">
+                    <div class="col-xs-4">
                         <h4>${song.title}</h4>
                         <p class="artist-well">${song.artist} &mdash; ${song.collection}</p>
                     </div>
@@ -42,8 +58,18 @@ function drawSongs(songList) {
                 </div>
             </div>`
         ;
+        songsDisplay.innerHTML = template;
     };
 };
+
+
+$('#songs').on('click', 'button.save-track', function () {
+    debugger;
+    myTunes.addTrack(this.id);
+    var id = this.id;
+    $('#id').parents('.song-well').addClass('selected');
+    drawSongs(searchResults);
+})
 
 /**This is my attempt to get the search to run when "enter" is pressed.  
 It's calling the function so I have no idea why it stops mid-operation.*/

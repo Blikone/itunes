@@ -41,6 +41,9 @@ audio{
 .list-even{
   background-color: rgba(243,243,243,.85);
 }
+.selected{
+  background-color: rgba(180,250,180,.9);
+}
 .ordinal, .album-art{
   display: inline-block;
 }
@@ -48,7 +51,11 @@ audio{
   font-size: 18px;
 }
 .album-art{
-  height: 70px
+  height: 70px;
+  display: inline-block;
+}
+.save-track{
+  display: inline-block;
 }
 .btn-purchase{
   background-color: #4F83E2;
