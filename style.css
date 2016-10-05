@@ -65,3 +65,6 @@ audio{
   padding-top: 25px;
   text-align: right;
 }
+.hidden{
+  display: none;
+}

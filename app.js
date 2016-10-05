@@ -9,6 +9,7 @@ function getMusic(event) {
 }
 
 function drawSongs(songList) {
+    debugger;
     var mySongs = myTunes.getTracks();
     if (mySongs != songList) {
         searchResults = songList;
@@ -16,11 +17,20 @@ function drawSongs(songList) {
     console.log(songList[0]);
     document.getElementById('songs').innerHTML = ""
     var template = "";
+    var whichButton = ""
     var songsDisplay = document.getElementById('songs');
     for (var i = 0; i < songList.length; i++) {
         var index = i+1;
         var parity = index % 2 === 1 ? "list-odd" : "list-even";
         var song = songList[i];
+        whichButton = songList == mySongs ? 
+            `
+                <button class="promote-song" id="${song.id}">Promote</button>
+                <button class="demote-song" id="${song.id}">Demote</button>
+                <button class="remove-song" id="${song.id}">Remove</button>
+            ` : `
+                <button class="save-track" id="${song.id}">Save to MyTunes</button>
+            `
         for (var j=0; j<mySongs.length; j++) {
             if (songList[i] == mySongs[j]) {
                 parity += " selected"
@@ -37,7 +47,7 @@ function drawSongs(songList) {
                                 </div>
                             </div>
                             <div class="col-xs-5">
-                                <button class="save-track" id="${song.id}">Save to MyTunes</button>
+                                ${whichButton}
                             </div>
                             <div class="col-xs-4">
                                 <img src="${song.albumArt}" class="album-art">
@@ -62,6 +72,17 @@ function drawSongs(songList) {
     };
 };
 
+
+$('.load-mysongs-button').on('click', function showMyTunes() {
+    drawSongs(myTunes.getTracks());
+    $('.load-mysongs-button').addClass('hidden');
+    $('.load-search-button').removeClass('hidden');
+})
+$('.load-search-button').on('click', function showSearch() {
+    drawSongs(searchResults);
+    $('.load-search-button').addClass('hidden');
+    $('.load-mysongs-button').removeClass('hidden');
+})
 
 $('#songs').on('click', 'button.save-track', function () {
     debugger;
