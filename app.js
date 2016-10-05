@@ -25,14 +25,15 @@ function drawSongs(songList) {
         var song = songList[i];
         whichButton = songList == mySongs ? 
             `
-                <button class="promote-track" id="${song.id}">Promote</button>
-                <button class="demote-track" id="${song.id}">Demote</button>
-                <button class="remove-track" id="${song.id}">Remove</button>
+                <button class="promote-track btn btn-default" id="${song.id}"><span class = "glyphicon glyphicon-arrow-up"></span> Promote</button>
+                <button class="demote-track btn btn-default" id="${song.id}"><span class = "glyphicon glyphicon-arrow-down"></span> Demote</button>
+                <button class="remove-track btn btn-default" id="${song.id}"><span class = "glyphicon glyphicon-remove"></span> Remove</button>
             ` : `
-                <button class="save-track" id="${song.id}">Save to MyTunes</button>
+                <button class="save-track btn btn-default" id="${song.id}"><span class = "glyphicon glyphicon-heart"></span> Save to<br/>MyTunes</button>
             `
         for (var j=0; j<mySongs.length; j++) {
-            if (songList[i] == mySongs[j]) {
+            // debugger;
+            if (songList[i].id == mySongs[j].id) {
                 parity += " selected"
             }
         }
@@ -47,7 +48,9 @@ function drawSongs(songList) {
                                 </div>
                             </div>
                             <div class="col-xs-5">
-                                ${whichButton}
+                                <div class="button-well">
+                                    ${whichButton}
+                                </div>
                             </div>
                             <div class="col-xs-4">
                                 <img src="${song.albumArt}" class="album-art">

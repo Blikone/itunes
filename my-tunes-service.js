@@ -3,9 +3,9 @@ function MyTunes() {
     /////TO-DO LIST/////
     /**DONE Add tracks when button is clicked
      * DONE Change song's class to a light green hue whenever it's on the favorites list
-     *      Create functionality of remove, promote, demote methods (incl. writing HTML for that list)
+     * DONE Create functionality of remove, promote, demote methods (incl. writing HTML for that list)
      * DONE Hook button up to showing favorites list
-     *      Use local storage to save/retrieve favorites list
+     * DONE Use local storage to save/retrieve favorites list
      * 
      */
 
