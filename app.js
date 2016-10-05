@@ -9,7 +9,7 @@ function getMusic(event) {
 }
 
 function drawSongs(songList) {
-    debugger;
+    // debugger;
     var mySongs = myTunes.getTracks();
     if (mySongs != songList) {
         searchResults = songList;
@@ -25,9 +25,9 @@ function drawSongs(songList) {
         var song = songList[i];
         whichButton = songList == mySongs ? 
             `
-                <button class="promote-song" id="${song.id}">Promote</button>
-                <button class="demote-song" id="${song.id}">Demote</button>
-                <button class="remove-song" id="${song.id}">Remove</button>
+                <button class="promote-track" id="${song.id}">Promote</button>
+                <button class="demote-track" id="${song.id}">Demote</button>
+                <button class="remove-track" id="${song.id}">Remove</button>
             ` : `
                 <button class="save-track" id="${song.id}">Save to MyTunes</button>
             `
@@ -85,11 +85,16 @@ $('.load-search-button').on('click', function showSearch() {
 })
 
 $('#songs').on('click', 'button.save-track', function () {
-    debugger;
+    // debugger;
     myTunes.addTrack(this.id);
-    var id = this.id;
-    $('#id').parents('.song-well').addClass('selected');
+    // var id = this.id;
+    // $('#id').parents('.song-well').addClass('selected');
     drawSongs(searchResults);
+})
+$('#songs').on('click', 'button.remove-track', function () {
+    debugger;
+    myTunes.removeTrack(this.id);
+    drawSongs(myTunes.getTracks());
 })
 
 /**This is my attempt to get the search to run when "enter" is pressed.  
