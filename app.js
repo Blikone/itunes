@@ -71,8 +71,8 @@ function drawSongs(songList) {
                 </div>
             </div>`
         ;
-        songsDisplay.innerHTML = template;
     };
+    songsDisplay.innerHTML = template;
 };
 
 
